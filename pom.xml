@@ -16,7 +16,6 @@
 
     <build>
         <plugins>
-            <!-- Runnable JAR: java -jar target/SDnD-Sp26-1.0-SNAPSHOT.jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -29,19 +28,10 @@
                     </archive>
                 </configuration>
             </plugin>
-
-            <!--
-                exec-maven-plugin — NetBeans "Run Project" uses exec:exec (not exec:java).
-                We configure BOTH executions so UTF-8 box-drawing and Arabic always render.
-                  • default-cli  → bound to exec:exec  (what NetBeans Run calls)
-                  • exec-java    → bound to exec:java  (what `mvn exec:java` calls)
-            -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
-
-                <!-- Shared defaults used by exec:java -->
                 <configuration>
                     <mainClass>eg.edu.eui.sdnd.sp26.Main</mainClass>
                     <jvmArgs>
@@ -49,7 +39,6 @@
                         <jvmArg>-Dstdout.encoding=UTF-8</jvmArg>
                         <jvmArg>-Dstderr.encoding=UTF-8</jvmArg>
                     </jvmArgs>
-                    <!-- exec:exec settings (NetBeans Run Project) -->
                     <executable>java</executable>
                     <commandlineArgs>-Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -cp %classpath eg.edu.eui.sdnd.sp26.Main</commandlineArgs>
                 </configuration>
