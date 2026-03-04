@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
-    <!--
-        This file tells NetBeans exactly what to run for Run Project (F6).
-        We pass -Dfile.encoding=UTF-8 so box-drawing chars and Arabic display correctly.
-    -->
     <action>
         <actionName>run</actionName>
         <packagings>
