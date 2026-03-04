@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <!--
+        This file tells NetBeans exactly what to run for Run Project (F6).
+        We pass -Dfile.encoding=UTF-8 so box-drawing chars and Arabic display correctly.
+    -->
+    <action>
+        <actionName>run</actionName>
+        <packagings>
+            <packaging>jar</packaging>
+        </packagings>
+        <goals>
+            <goal>process-classes</goal>
+            <goal>org.codehaus.mojo:exec-maven-plugin:3.5.1:exec</goal>
+        </goals>
+        <properties>
+            <exec.args>-Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -cp %classpath eg.edu.eui.sdnd.sp26.Main</exec.args>
+            <exec.executable>java</exec.executable>
+            <exec.classpathScope>runtime</exec.classpathScope>
+        </properties>
+    </action>
+    <action>
+        <actionName>debug</actionName>
+        <packagings>
+            <packaging>jar</packaging>
+        </packagings>
+        <goals>
+            <goal>process-classes</goal>
+            <goal>org.codehaus.mojo:exec-maven-plugin:3.5.1:exec</goal>
+        </goals>
+        <properties>
+            <exec.args>-Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address} -cp %classpath eg.edu.eui.sdnd.sp26.Main</exec.args>
+            <exec.executable>java</exec.executable>
+            <exec.classpathScope>runtime</exec.classpathScope>
+            <jpda.listen>true</jpda.listen>
+        </properties>
+    </action>
+</actions>
