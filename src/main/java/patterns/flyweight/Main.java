@@ -40,6 +40,32 @@ public class Main {
                 + ColumnMetadataFactory.getCacheSize()
                 + " (not " + (rawData.length * 4) + ")");
 
+        System.out.println("Cache size after employees schema: "
+                + ColumnMetadataFactory.getCacheSize());
+
+        System.out.println("\n=== Schema: transactions ===");
+        DatasetSchema transactionsSchema = new DatasetSchema(new ColumnMetadata[]{
+                ColumnMetadataFactory.get("id",           "INTEGER", false), // REUSED ← same object
+                ColumnMetadataFactory.get("amount",        "DECIMAL", false), // NEW → created
+                ColumnMetadataFactory.get("currency",      "VARCHAR", false), // NEW → created
+                ColumnMetadataFactory.get("processed_at",  "TIMESTAMP", true) // NEW → created
+        });
+        System.out.println("Cache size after transactions schema: "
+                + ColumnMetadataFactory.getCacheSize()
+                + " (id reused — not re-created)");
+
+        System.out.println("\n=== Schema: audit_log ===");
+        DatasetSchema auditSchema = new DatasetSchema(new ColumnMetadata[]{
+                ColumnMetadataFactory.get("id",           "INTEGER", false),  // REUSED
+                ColumnMetadataFactory.get("name",          "VARCHAR", false),  // REUSED
+                ColumnMetadataFactory.get("processed_at",  "TIMESTAMP", true), // REUSED
+                ColumnMetadataFactory.get("action",        "VARCHAR", false)   // NEW → created
+        });
+        System.out.println("Cache size after audit_log schema: "
+                + ColumnMetadataFactory.getCacheSize()
+                + " (id, name, processed_at all reused)");
+
+
     }
 
     private static void runBefore() {
