@@ -6,8 +6,8 @@ import patterns.decorator.before.MonolithicDataSource;
 
 public class Main {
     public static void main(String[] args) {
-        runBefore();
-        System.out.println("Decorator");
+        //runBefore();
+        //System.out.println("Decorator");
         runAfter();
     }
 
@@ -16,12 +16,11 @@ public class Main {
 
         System.out.println("=== Raw source (no extras) ===");
         base.connect();
-        base.fetchRows();
-        base.disconnect();
+//        base.fetchRows();
+//        base.disconnect();
 
         System.out.println("\n=== Logged + Compressed (FTP upload) ===");
-        new LoggingDataSource(new CompressingDataSource(base))
-                .connect();
+        new LoggingDataSource(new CompressingDataSource(base)).connect();
 
         System.out.println("\n=== Logged + Encrypted + Compressed (S3 sensitive) ===");
         DataSource secure = new LoggingDataSource(
@@ -59,7 +58,5 @@ public class Main {
                 "/data/orders.csv", true, true, false
         );
         s1.connect();
-        s1.fetchRows();
-        s1.disconnect();
     }
 }
